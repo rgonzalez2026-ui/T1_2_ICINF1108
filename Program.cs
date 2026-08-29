@@ -45,7 +45,11 @@ app.UseStatusCodePages(async context =>
 });
 
 app.UseSwagger();
-app.UseSwaggerUI(c => c.RoutePrefix = "docs");
+app.UseSwaggerUI(options =>
+{
+    options.RoutePrefix = "docs";
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "API de estudiantes v1");
+});
 
 app.UseHttpsRedirection();
 
