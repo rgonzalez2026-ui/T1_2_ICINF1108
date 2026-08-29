@@ -1,7 +1,36 @@
 # Taller Evaluado I — API de estudiantes
 
-API CRUD desarrollada con ASP.NET Core Minimal API para el Taller Evaluado I de ICINF1108.
-Todas las respuestas HTTP JSON, tanto exitosas como de error, utilizan un contrato único.
+## Descripción del proyecto
+
+Esta API permite crear, listar, buscar, actualizar y eliminar estudiantes. Cada estudiante tiene
+un identificador UUID, nombre, correo electrónico, edad y fechas de creación y actualización. Los
+datos se almacenan localmente en `Data/students.json`.
+
+El proyecto está desarrollado con ASP.NET Core Minimal API para el Taller Evaluado I de ICINF1108.
+El objetivo del taller es mantener el CRUD original y estandarizar todas sus respuestas HTTP JSON,
+tanto exitosas como de error, mediante un único contrato.
+
+## Funcionalidades principales
+
+- Listar todos los estudiantes registrados.
+- Buscar un estudiante mediante su UUID.
+- Crear estudiantes con validación de nombre, correo y edad.
+- Actualizar parcialmente los datos de un estudiante.
+- Eliminar un estudiante existente.
+- Rechazar correos duplicados.
+- Responder éxitos y errores con la misma estructura JSON.
+
+## Endpoints
+
+| Método | Ruta | Descripción |
+|---|---|---|
+| GET | `/api/students` | Lista todos los estudiantes |
+| GET | `/api/students/{id}` | Obtiene un estudiante por UUID |
+| POST | `/api/students` | Crea un estudiante |
+| PATCH | `/api/students/{id}` | Actualiza parcialmente un estudiante |
+| DELETE | `/api/students/{id}` | Elimina un estudiante |
+
+El taller no agrega endpoints nuevos; solamente estandariza sus respuestas y el manejo de errores.
 
 ## Integrantes y responsabilidades
 
@@ -21,26 +50,14 @@ Los documentos individuales se conservan en [`Contribuciones`](./Contribuciones)
 ## Instalación y ejecución
 
 ```bash
-git clone https://github.com/rgonzalez2026-ui/Taller_1.git
-cd Taller_1
+git clone https://github.com/rgonzalez2026-ui/T1_2_ICINF1108.git
+cd T1_2_ICINF1108
 dotnet restore
 dotnet run
 ```
 
 Con el perfil HTTP incluido, la API queda disponible en `http://localhost:5101` y Swagger UI en
 `http://localhost:5101/docs`.
-
-## Endpoints
-
-| Método | Ruta | Descripción |
-|---|---|---|
-| GET | `/api/students` | Lista todos los estudiantes |
-| GET | `/api/students/{id}` | Obtiene un estudiante por UUID |
-| POST | `/api/students` | Crea un estudiante |
-| PATCH | `/api/students/{id}` | Actualiza parcialmente un estudiante |
-| DELETE | `/api/students/{id}` | Elimina un estudiante |
-
-El taller no agrega endpoints nuevos; solamente estandariza sus respuestas y el manejo de errores.
 
 ## Estándar de respuestas HTTP JSON
 
