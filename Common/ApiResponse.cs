@@ -62,6 +62,12 @@ public class ApiResponse<T>
 
     public static ApiResponse<T> ErrorResponse(string message, int statusCode, IEnumerable<string>? errors = null)
     {
+        var errorList = errors?.ToList();
+        if (errorList is null || errorList.Count == 0)
+        {
+            errorList = [message];
+        }
+
         return new ApiResponse<T>
         {
             Success = false,
@@ -69,7 +75,7 @@ public class ApiResponse<T>
             Message = message,
             DataType = "null",
             Data = default,
-            Errors = (errors ?? new[] { message }).ToList()
+            Errors = errorList
         };
     }
 }
