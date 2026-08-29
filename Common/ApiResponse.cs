@@ -3,7 +3,7 @@ namespace estudiantes_icinf.Common;
 // =========================================================================
 // TALLER EVALUADO I - Estándar de respuestas HTTP JSON
 // Parte 1: Diseño del estándar.
-// Responsable: Estudiante 1 (reemplazar por nombre real antes de hacer commit)
+// Responsable: Roberto González
 // =========================================================================
 //
 // Contrato único para TODAS las respuestas de la API (éxitos y errores):
