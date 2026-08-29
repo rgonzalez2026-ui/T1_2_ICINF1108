@@ -12,5 +12,4 @@ Cubre los casos: validación fallida (`400 Bad Request` vía FluentValidation), 
 exitosa (`201 Created` / `200 OK`), todos usando `ApiResponse<T>`.
 
 ---
-*Extraído de `Endpoints/StudentEndpoints.cs` (rama `estudiantes_icinf-dotnet`) en el archivo
-`StudentEndpoints_Parte3y4.cs`.*
+*Aporte integrado y adaptado a la interfaz real del proyecto en `Endpoints/StudentEndpoints.cs`.*

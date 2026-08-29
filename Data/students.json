@@ -1,0 +1,18 @@
+[
+  {
+    "id": "5f8a1b2c-3d4e-4f5a-8b6c-7d8e9f0a1b2c",
+    "name": "Juan Perez",
+    "email": "juan.perez@alu.uct.cl",
+    "age": 20,
+    "createdAt": "2026-08-24T12:00:00Z",
+    "updatedAt": "2026-08-24T12:00:00Z"
+  },
+  {
+    "id": "6a9b2c3d-4e5f-4a6b-9c7d-8e9f0a1b2c3d",
+    "name": "Maria Gonzalez",
+    "email": "maria.gonzalez@alu.uct.cl",
+    "age": 21,
+    "createdAt": "2026-08-24T12:00:00Z",
+    "updatedAt": "2026-08-24T12:00:00Z"
+  }
+]

@@ -1,17 +1,16 @@
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
 
 namespace estudiantes_icinf.Common;
 
 // =========================================================================
 // TALLER EVALUADO I - Estándar de respuestas HTTP JSON
 // Parte 2: Implementación - Manejador global de errores.
-// Responsable: Estudiante 2 (reemplazar por nombre real antes de hacer commit)
+// Responsable: Roberto González
 // =========================================================================
 //
 // Cualquier excepción NO controlada explícitamente por un endpoint cae aquí
-// y se transforma en un ApiResponse<object?> con statusCode 500, en vez de
-// devolver la página de error nativa de ASP.NET Core.
+// y se transforma en un ApiResponse<object?>. Las solicitudes JSON inválidas
+// conservan su statusCode 400 y los errores inesperados responden con 500.
 //
 // Se registra en Program.cs con:
 //   builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
@@ -36,15 +35,29 @@ public class GlobalExceptionHandler : IExceptionHandler
         Exception exception,
         CancellationToken cancellationToken)
     {
-        _logger.LogError(exception, "Excepción no controlada: {Message}", exception.Message);
+        var statusCode = exception is BadHttpRequestException badRequest
+            ? badRequest.StatusCode
+            : StatusCodes.Status500InternalServerError;
+
+        if (statusCode >= StatusCodes.Status500InternalServerError)
+        {
+            _logger.LogError(exception, "Excepción no controlada: {Message}", exception.Message);
+        }
+        else
+        {
+            _logger.LogWarning(exception, "Solicitud HTTP inválida: {Message}", exception.Message);
+        }
+
+        var message = statusCode == StatusCodes.Status400BadRequest
+            ? "La solicitud contiene datos JSON inválidos."
+            : "Ocurrió un error inesperado al procesar la solicitud.";
 
         var response = ApiResponse.Error(
-            message: "Ocurrió un error inesperado al procesar la solicitud.",
-            statusCode: StatusCodes.Status500InternalServerError,
-            errors: new[] { exception.Message }
+            message: message,
+            statusCode: statusCode
         );
 
-        httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
+        httpContext.Response.StatusCode = statusCode;
         httpContext.Response.ContentType = "application/json";
 
         await httpContext.Response.WriteAsJsonAsync(response, cancellationToken);

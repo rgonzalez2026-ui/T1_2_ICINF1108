@@ -10,5 +10,4 @@ endpoints y la **documentación** del estándar en el `README.md` (sección "Est
 HTTP JSON", con el diseño del contrato, ejemplos de éxito/error y la tabla de responsables).
 
 ---
-*Extraído de `Endpoints/StudentEndpoints.cs` (bloque DELETE, en `StudentEndpoints_Parte5.cs`) y
-del `README.md` completo de la rama `estudiantes_icinf-dotnet`.*
+*Aporte integrado en `Endpoints/StudentEndpoints.cs` y en el `README.md` raíz del repositorio.*
